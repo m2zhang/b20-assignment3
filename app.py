@@ -28,6 +28,7 @@ class Person(db.Model):
 
 class Grades(db.Model):
     __tablename__ = 'Grades'
+    id = db.Column(db.Integer, primary_key=True)
     assignment_name = db.Column(db.String(100), nullable=False)
     grade = db.Column(db.Float, nullable=False)
     remark_request = db.Column(db.Text)
@@ -35,6 +36,27 @@ class Grades(db.Model):
 
     def __repr__(self):
         return f"Grades('{self.assignment_name}', '{self.grade}')"
+    
+# store anonymous feedback form
+class Feedback(db.Model):
+    __tablename__ = 'Feedback'
+    id = db.Column(db.Integer, primary_key=True) #instructor's id
+    like = db.Column(db.Text)
+    improve_teach = db.Column(db.Text)
+    labs = db.Column(db.Text)
+    improve_lab = db.Column(db.Text)
+    #db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
+    def __repr__(self):
+        return f"Feedback('{self.id}', '{self.like}')"
+
+# store remark requests
+class Remarks(db.Model):
+    __table__name = 'Remark Requests'
+    id = db.Column(db.Integer, primary_key=True) #student id
+    reason = db.Column(db.Text) # reason for remark request 
+    def __repr__(self):
+        return f"Remarks('{self.id}', '{self.reason}')"
+
 
 class Notes(db.Model):
     __tablename__ = 'Notes'
