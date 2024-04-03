@@ -13,7 +13,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 10)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-class Instructors(db.model):
+class Instructors(db.Model):
     __tablename__ = 'Instructors'
     id = db.Column(db.Integer, primary_key=True) #id is for students and instructors
     username = db.Column(db.String(20), unique=True, nullable=False)
