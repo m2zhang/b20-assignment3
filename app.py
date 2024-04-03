@@ -13,14 +13,30 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes = 10)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 
-class Person(db.Model):
-    __tablename__ = 'Person'
-    id = db.Column(db.Integer, primary_key=True)
-    user_type = db.Column(db.String(10), nullable=False)  # Use later for student/instructor
+class Instructors(db.model):
+    __tablename__ = 'Instructors'
+    id = db.Column(db.Integer, primary_key=True) #id is for students and instructors
     username = db.Column(db.String(20), unique=True, nullable=False)
+    firstname = db.Column(db.String(20), unique=False, nullable=False)
+    lastname = db.Column(db.String(20), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(20), nullable = False)
-    notes = db.relationship('Notes', backref='author', lazy=True)
+    grades = db.relationship('Grades', backref='author', lazy=True)
+
+    def __repr__(self):
+        return f"Person('{self.username}', '{self.email}')"
+
+class Students(db.Model):
+    __tablename__ = 'Students'
+    id = db.Column(db.Integer, primary_key=True) #id is for students and instructors
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    firstname = db.Column(db.String(20), unique=False, nullable=False)
+    lastname = db.Column(db.String(20), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(20), nullable = False)
+    feedback = db.relationship('Feedback', backref='author', lazy=True)
+    remark = db.relationship('Remarks', backref='author', lazy=True)
+
 
     def __repr__(self):
         return f"Person('{self.username}', '{self.email}')"
@@ -32,7 +48,7 @@ class Grades(db.Model):
     assignment_name = db.Column(db.String(100), nullable=False)
     grade = db.Column(db.Float, nullable=False)
     remark_request = db.Column(db.Text)
-    student_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
+    instructor_id = db.Column(db.Integer, db.ForeignKey('Instructors.id'), nullable=False)
 
     def __repr__(self):
         return f"Grades('{self.assignment_name}', '{self.grade}')"
@@ -45,6 +61,8 @@ class Feedback(db.Model):
     improve_teach = db.Column(db.Text)
     labs = db.Column(db.Text)
     improve_lab = db.Column(db.Text)
+    student_id = db.Column(db.Integer, db.ForeignKey('Students.id'), nullable=False)
+
     #db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
     def __repr__(self):
         return f"Feedback('{self.id}', '{self.like}')"
@@ -54,20 +72,11 @@ class Remarks(db.Model):
     __table__name = 'Remark Requests'
     id = db.Column(db.Integer, primary_key=True) #student id
     reason = db.Column(db.Text) # reason for remark request 
+    student_id = db.Column(db.Integer, db.ForeignKey('Students.id'), nullable=False)
+
     def __repr__(self):
         return f"Remarks('{self.id}', '{self.reason}')"
 
-
-class Notes(db.Model):
-    __tablename__ = 'Notes'
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.UTC)
-    content = db.Column(db.Text, nullable=False)
-    person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
-
-    def __repr__(self):
-        return f"Notes('{self.title}', '{self.date_posted}')"
 
 with app.app_context():
     db.create_all()
