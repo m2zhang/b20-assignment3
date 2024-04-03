@@ -16,6 +16,7 @@ bcrypt = Bcrypt(app)
 class Person(db.Model):
     __tablename__ = 'Person'
     id = db.Column(db.Integer, primary_key=True)
+    user_type = db.Column(db.String(10), nullable=False)  # Use later for student/instructor
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(20), nullable = False)
@@ -23,12 +24,23 @@ class Person(db.Model):
 
     def __repr__(self):
         return f"Person('{self.username}', '{self.email}')"
+    
+
+class Grades(db.Model):
+    __tablename__ = 'Grades'
+    assignment_name = db.Column(db.String(100), nullable=False)
+    grade = db.Column(db.Float, nullable=False)
+    remark_request = db.Column(db.Text)
+    student_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Grades('{self.assignment_name}', '{self.grade}')"
 
 class Notes(db.Model):
     __tablename__ = 'Notes'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.UTC)
     content = db.Column(db.Text, nullable=False)
     person_id = db.Column(db.Integer, db.ForeignKey('Person.id'), nullable=False)
 
