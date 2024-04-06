@@ -1,0 +1,20 @@
+{% extends "template.html" %}
+{% block content %}
+
+{% if session.name %}
+          <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
+          <p> Now you can add and view lecture notes </p>
+
+
+{% else %}
+    <h1>This is my {{ pagename }} page</h1>
+    <p>
+    This web app contains the lecture notes collection for lectures 1 to 13
+    </p>
+    <p>
+    Please Register or Login to add notes for the lectures
+    </p>
+
+{% endif %}
+
+{% endblock %}

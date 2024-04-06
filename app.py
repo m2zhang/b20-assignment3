@@ -73,16 +73,17 @@ class Remarks(db.Model):
     def __repr__(self):
         return f"Remarks('{self.id}', '{self.reason}')"
 
-
 with app.app_context():
     db.create_all()
 
 
+## Homepage
+
 @app.route("/")
 @app.route('/home')
 def home():
-    pagename='home'
-    return render_template("create_acc.html", pagename=pagename)
+    pagename='CSCB20 Course'
+    return render_template("home.html", pagename=pagename)
 
 
 if __name__ == "__main__":
