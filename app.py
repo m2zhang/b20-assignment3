@@ -43,7 +43,7 @@ class Grades(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     assignment_name = db.Column(db.String(100), nullable=False)
     grade = db.Column(db.Float, nullable=False)
-    remark_request = db.Column(db.Text)
+    remark_request = db.Column(db.Text, nullable=True)
     student_id = db.Column(db.Integer, db.ForeignKey('Students.id'), nullable=False)
 
     def __repr__(self):
