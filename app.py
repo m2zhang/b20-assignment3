@@ -87,6 +87,15 @@ def home():
     pagename='CSCB20 Course'
     return render_template("home.html", pagename=pagename)
 
+@app.route("/login")
+def login():
+    pagename = 'Login'
+    return render_template("login.html", pagename=pagename)
+
+@app.route("/create-account")
+def create_acc():
+    pagename="Create Account"
+    return render_template("create_acc.html", pagename=pagename)
 
 if __name__ == "__main__":
     app.run(debug=True)

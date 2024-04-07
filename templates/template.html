@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet", href="{{ url_for('static', filename='static/css/styles.css')}}">
-    <title>{{ pagename }} page</title>
+    <title>{{ pagename }} Page </title>
 </head>
 
 <body>
@@ -12,26 +12,6 @@
         <p>Test</p>
     </div>
     
-    <!--  navbar for instructors 
-     {% if session.type = instructor}
-     nav bar for instructors here
-    {% block content %}
-    {% endblock %}
-    footer here
-
-    {% elif session.type = students }
-    nav bar for students here
-     {% block content %}
-    {% endblock %}
-        footer here
-
-
-    { % else  %}
-    (in home.html -> if not in session name, do nothing basically)
-
-    <a href="{{ url_for('login') }}">Please login here </a>
-    --> 
-
     {% block content %}
     {% endblock %}
 </body>
