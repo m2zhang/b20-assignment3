@@ -11,7 +11,10 @@
     <div class="container">
         <p>Test</p>
     </div>
-    
+    {% if session.name and session.type == 'student' %}
+        
+
+
     {% block content %}
     {% endblock %}
 </body>

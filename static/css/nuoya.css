@@ -1,3 +1,17 @@
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.flashes li {
+    background-color: #ffcc00;
+    border: 1px solid #ff9933;
+    color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
 .login-header{
     text-align:center;
     margin-top: 50px;

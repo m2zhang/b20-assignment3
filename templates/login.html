@@ -6,6 +6,20 @@
     <link rel="Stylesheet" href="/static/css/nuoya.css">
     <title>Login</title>
 </head>
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class = flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% endblock %}
+
     <body style="background-color: #D4DCF6;">
 
         <div class="login-header">
