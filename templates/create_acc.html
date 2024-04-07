@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="styles.css"/>
 </head>
+
 <body>
-    restart.
+    <section class="create_acc_container">
+        <header>Create an Account</header>
+        <p>Select account type</p>
+        <form action="http://127.0.0.1:5000/create-account" method="post">
+            <input type="radio" id="stu" name="user_type" value="student">
+            <label for="stu">Student</label>
+            <input type="radio" id="ins" name="user_type" value="instructor">
+            <label for="ins">Instructor</label><br>
+
+            <label for="username">Username</label>
+            <input type="text" id="Username" name="Username">
+            
+            <label for="email">Email</label>
+            <input type="text" id="Email" name="Email">
+
+            <label for="password">Password</label>
+            <input type="text" id="Password" name="Password">
+
+            <button type="create-acc">Create an Account</button>
+        </form>
+
+
+
+    </section>
 </body>
 </html>
