@@ -1,0 +1,73 @@
+/* Container styling */
+.create_acc_container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Header styling */
+.create_acc_container header{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.create_acc_container p{
+    text-align: center;
+}
+
+/* Radio button label styling */
+.create_acc_container label {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 10px; 
+}
+
+/* Form input styling */
+.create_acc_container input[type="text"], 
+.create_acc_container input[type="radio"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    vertical-align: middle; /* Aligns input vertically with labels */
+    cursor: pointer;
+}
+
+.create_acc_container input[type="radio"] {
+    width: 50px;
+    margin-right: 10px;
+    margin-bottom: 35px;
+}
+
+.radio-container {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.create_acc_container input[type="text"]{
+    width: calc(100% -22px)
+}
+
+
+
+/* Button styling */
+.create_acc_container button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create_acc_container button:hover {
+    background-color: #0056b3;
+}
