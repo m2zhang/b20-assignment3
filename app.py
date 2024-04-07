@@ -103,7 +103,7 @@ def grades_instructor():
     return render_template("grades_insview.html", pagename=pagename)
 
 @app.route("/grades-student")
-def grades_instructor():
+def grades_student():
     pagename="Student's View of Grades"
     return render_template("grades_stuview.html", pagename=pagename)
 
