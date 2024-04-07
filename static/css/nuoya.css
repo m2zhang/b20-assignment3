@@ -114,7 +114,7 @@ body {
     margin-top: 30px;
     left:10px
    
-    transform: translateX(-50%); 
+    /* transform: translateX(-50%); (Currently not working) */
 
 }
 
