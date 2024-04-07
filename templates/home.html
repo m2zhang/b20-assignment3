@@ -1,18 +1,24 @@
 {% extends "template.html" %}
 {% block content %}
 
-{% if session.name %}
+{% if session.name and session.user_type =='student' %}
           <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
-          <p> Now you can add and view lecture notes </p>
+          <p> This is for student's view </p>
 
+{% endif %}
 
-{% else %}
-    <h1>This is my {{ pagename }} page</h1>
+{% if session.name and session.user_type =='instructor' %}
+    <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
+    <p> This is for instructor's view </p>
+
+{% endif %}
+
+{% if not session.name %}
+    <h1>This is the CSCB20 Course page</h1>
     <p>
-    This web app contains the lecture notes collection for lectures 1 to 13
-    </p>
-    <p>
-    Please Register or Login to add notes for the lectures
+    Please <a href="{{url_for('create_acc')}}">create an account</a> or <a href="{{url_for('login')}}">login</a> to access the rest of the website.
+    
+    Thank you!
     </p>
 
 {% endif %}
