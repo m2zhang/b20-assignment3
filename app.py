@@ -97,5 +97,15 @@ def create_acc():
     pagename="Create Account"
     return render_template("create_acc.html", pagename=pagename)
 
+@app.route("/grades-instructor")
+def grades_instructor():
+    pagename="Instructor's View of Grades"
+    return render_template("grades_insview.html", pagename=pagename)
+
+@app.route("/grades-student")
+def grades_instructor():
+    pagename="Student's View of Grades"
+    return render_template("grades_stuview.html", pagename=pagename)
+
 if __name__ == "__main__":
     app.run(debug=True)
