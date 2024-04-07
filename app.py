@@ -87,10 +87,35 @@ def home():
     pagename='CSCB20 Course'
     return render_template("home.html", pagename=pagename)
 
-@app.route("/login")
+@app.route("/login", methods = ['GET', 'POST'])
 def login():
-    pagename = 'Login'
-    return render_template("login.html", pagename=pagename)
+    if request.method == 'GET':
+        if 'name' in session:
+            flash('You are already logged in!')
+            return redirect(url_for('home'))
+        else:
+            return render_template('login.html')
+    else:  # Method is POST, user just clicked the button to login
+        username = request.form['Username']
+        password = request.form['Password']
+        user_type = request.form['user_type']   
+
+        # Check person from the right database..
+        if user_type == 'instructor':
+            person = Instructors.query.filter_by(username=username).first()
+        elif user_type == 'student':
+            person = Students.query.filter_by(username=username).first()
+
+        # See if it's a valid user or not!
+        if not person or not bcrypt.check_password_hash(person.password, password):
+            flash('Please check your login details and try again.', 'error')
+            return render_template('login.html')
+        else:
+            session['name'] = username
+            session['user_type'] = user_type
+            session.permanent = True
+            return redirect(url_for('home'))
+        
 
 @app.route("/create-account", methods=['GET', 'POST'])
 def create_acc():
