@@ -18,6 +18,7 @@ class Instructors(db.Model):
     id = db.Column(db.Integer, primary_key=True) #id is for students and instructors
     username = db.Column(db.String(20), unique=True, nullable=False)
     firstname = db.Column(db.String(20), unique=False, nullable=False)
+    type = db.Column(db.String(10), nullable=False, default='instructor')
     password = db.Column(db.String(20), nullable = False)
     feedback = db.relationship('Feedback', backref='user', lazy=True)
 
@@ -30,6 +31,7 @@ class Students(db.Model):
     username = db.Column(db.String(20), unique=True, nullable=False)
     firstname = db.Column(db.String(20), unique=False, nullable=False)
     password = db.Column(db.String(20), nullable = False)
+    type = db.Column(db.String(10), nullable=False, default='student')
     grades = db.relationship('Grades', backref='get', lazy=True)
     remark = db.relationship('Remarks', backref='author', lazy=True)
 
