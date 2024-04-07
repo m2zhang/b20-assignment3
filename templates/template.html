@@ -11,10 +11,27 @@
     <div class="container">
         <p>Test</p>
     </div>
-    {% if session.name and session.type == 'student' %}
-        
+    
+    <html>
+<head>
+    <title>Yellow Navigation Bar</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/nuoya.css">
+</head>
+<body>
 
+<div class="navbar">
+    <a href="#" class="active">Home</a>
+    <a href="#">Grades</a>
+    <a href="#">News</a>
+    <a href="#">Piazza</a>
+    <a href="#">Lectures</a>
+    <a href="#">Labs</a>
+    <a href="#">Assignments</a>
+    <a href="#">Tests</a>
+    <a href="#">Resources</a>
+    <a href="#">Feedback</a>
 
+</div>
     {% block content %}
     {% endblock %}
 </body>
