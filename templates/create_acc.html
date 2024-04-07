@@ -3,9 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Create Account</title>
+    <link rel="stylesheet" href="/static/css/styles.css"/>
 </head>
+
 <body>
-    restart.
+    <section class="create_acc_container">
+        <header>Welcome to CSCB20</header>
+        <p>Select account type</p>
+        <form action="http://127.0.0.1:5000/create-account" method="post" >
+            
+            <div class="radio-container">
+            <input type="radio" id="stu" name="user_type" value="student" checked>
+            <label for="stu">Student</label>
+            
+            <input type="radio" id="ins" name="user_type" value="instructor">
+            <label for="ins">Instructor</label><br>
+            </div>
+
+            <label for="username">Username</label>
+            <input type="text" id="Username" name="Username" required><br>
+            
+            <label for="email">Email</label>
+            <input type="text" id="Email" name="Email" required><br>
+
+            <label for="password">Password</label>
+            <input type="text" id="Password" name="Password" required><br>
+
+            <button type="create-acc">Create an Account</button>
+        </form>
+
+    </section>
 </body>
 </html>
