@@ -238,5 +238,10 @@ def is_username_taken(username):
     else:
         return False
 
+@app.route('/logout')
+def logout():
+    session.pop('name', default = None)
+    return redirect(url_for('home'))
+
 if __name__ == "__main__":
     app.run(debug=True)
