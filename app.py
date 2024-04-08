@@ -209,6 +209,16 @@ def resources():
     pagename="Resources"
     return render_template("resources.html", pagename=pagename)
 
+@app.route("/feedback")
+def feedback():
+    pagename="Feedback"
+    return render_template("feedback_insview.html", pagename=pagename)
+
+@app.route("/feedback-form")
+def resources():
+    pagename="Feedback form"
+    return render_template("feedback_stuview.html", pagename=pagename)
+
 def add_student(reg_details):
     student = Students(username= reg_details[0], firstname=reg_details[1], password=reg_details[2], type=reg_details[3])
     db.session.add(student)
