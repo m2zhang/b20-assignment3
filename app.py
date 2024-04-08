@@ -164,13 +164,13 @@ def create_acc():
             return redirect(url_for('login'))
         
 
-@app.route("/grades-instructor")
-def grades_instructor():
+@app.route("/grades_insview")
+def grades_insview():
     pagename="Instructor's View of Grades"
     return render_template("grades_insview.html", pagename=pagename)
 
-@app.route("/grades-student")
-def grades_student():
+@app.route("/grades_stuview")
+def grades_stuview():
     pagename="Student's View of Grades"
     return render_template("grades_stuview.html", pagename=pagename)
 
@@ -215,7 +215,7 @@ def feedback():
     return render_template("feedback_insview.html", pagename=pagename)
 
 @app.route("/feedback-form")
-def resources():
+def feedback_form():
     pagename="Feedback form"
     return render_template("feedback_stuview.html", pagename=pagename)
 
