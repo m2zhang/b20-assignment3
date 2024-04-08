@@ -164,10 +164,33 @@ def create_acc():
             return redirect(url_for('login'))
         
 
-@app.route("/grades_insview")
+@app.route("/grades_insview", methods = ['GET', 'POST'])
 def grades_insview():
-    pagename="Instructor's View of Grades"
-    return render_template("grades_insview.html", pagename=pagename)
+    query_students_result = query_students()
+
+    if request.method == 'GET':
+        pagename="Instructor's View of Grades"
+        return render_template("grades_insview.html", query_students_result=query_students_result)
+    else:
+        grade_details = (
+            request.form['assignment_name'],
+            request.form['grade'],
+            request.form['student'],
+        )
+
+        add_grades(grade_details)
+        flash('Grade added successfully.')
+        return redirect(url_for('grades_insview'))
+
+def add_grades(grade_details):
+    grades = Grades(assignment_name = grade_details[0], grade=grade_details[1], remark_request='', student_id=grade_details[2] )
+    db.session.add(grades)
+    db.session.commit()
+
+def query_students():
+    query_students = Students.query.all()
+    return query_students
+
 
 @app.route("/grades_stuview")
 def grades_stuview():

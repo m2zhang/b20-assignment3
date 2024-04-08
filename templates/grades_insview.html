@@ -2,10 +2,40 @@
 {% block content %}
 
 
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class = flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 {% if session.name and session.user_type =='instructor' %}
     <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
     <p> Here you can see students' grades, enter new marks, and also update marks as per students' remark requests. </p>
     <br>
+    <button id="openGradeFormButton">Submit Grade</button>
+    <div id="gradeForm" class="form-popup" style="display: none;">
+        <form action="http://127.0.0.1:5000/grades_insview" method="post">
+            <h2>Submit Grade</h2>
+            <label for="student">Student:</label>
+            <select id="student" name="student">
+                {% for student in query_students_result %}
+                    <option value="{{ student.id }}">{{ student.username }}</option>
+                {% endfor %}
+            </select>
+            <label for="assignment_name">Assignment Name:</label>
+            <input type="text" id="assignment_name" name="assignment_name" required>
+            <label for="grade">Grade:</label>
+            <input type="number" id="grade" name="grade" min="0" max="100" step="0.01" required>
+            <input type="submit" value="Submit">
+            <button type="button" class="btn cancel" id="closeGradeFormButton">Close</button>
+        </form>    
+    </div>
+    <script type='text/javascript' src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/grades.js') }}"></script>
     
 
 {% else %}
