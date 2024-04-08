@@ -4,32 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet", href="{{ url_for('static', filename='static/css/styles.css')}}">
-    <title>{{ pagename }} Page </title>
+    <title>Yellow Navigation Bar</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/nuoya.css">
+
 </head>
 
 <body>
-    <div class="container">
-        <p>Test</p>
-    </div>
-    
-    <html>
-<head>
-    <title>Yellow Navigation Bar</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/nuoya.css">
-</head>
-<body>
+    {% block additional_content %}
+
+{% if session.name %}
 
 <div class="navbar">
     <a href="#" class="active">Home</a>
-    <a href="#">Grades</a>
-    <a href="#">News</a>
-    <a href="#">Piazza</a>
-    <a href="#">Lectures</a>
-    <a href="#">Labs</a>
-    <a href="#">Assignments</a>
-    <a href="#">Tests</a>
-    <a href="#">Resources</a>
-    <a href="#">Feedback</a>
+
+        {% if session.user_type =='student' %}  
+            <a href="{{url_for('grades_stuview')}}">Grades</a>
+        {% elif session.user_type =='instructor' %}
+            <a href="{{url_for('grades_insview')}}">Grades</a>
+        
+        {% endif %}
+    <a href="{{url_for('news')}}">News</a>
+    <a href="{{url_for('piazza')}}">Piazza</a>
+    <a href="{{url_for('lectures')}}">Lectures</a>
+    <a href="{{url_for('labs')}}">Labs</a>
+    <a href="{{url_for('assignments')}}">Assignments</a>
+    <a href="{{url_for('tests')}}">Tests</a>
+    <a href="{{url_for('resources')}}">Resources</a>
+
+    {% if session.user_type =='student' %}  
+        <a href="{{url_for('feedback_form')}}">Feedback</a>
+    {% elif session.user_type =='instructor' %}
+        <a href="{{url_for('feedback')}}">Feedback</a>
+    {% endif %}
+
+    <a href="{{ url_for('logout') }}">Log Out</a>
+    {% endif %}
+
+    {% endblock %}
 
 </div>
     {% block content %}

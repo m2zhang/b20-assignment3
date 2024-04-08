@@ -87,25 +87,161 @@ def home():
     pagename='CSCB20 Course'
     return render_template("home.html", pagename=pagename)
 
-@app.route("/login")
+@app.route("/login", methods = ['GET', 'POST'])
 def login():
-    pagename = 'Login'
-    return render_template("login.html", pagename=pagename)
+    if request.method == 'GET':
+        if 'name' in session:
+            flash('You are already logged in!')
+            return redirect(url_for('home'))
+        else:
+            return render_template('login.html')
+    else:  # Method is POST, user just clicked the button to login
+        username = request.form['Username']
+        password = request.form['Password']
+        user_type = request.form['user_type']   
 
-@app.route("/create-account")
+        # Check person from the right database..
+        if user_type == 'instructor':
+            person = Instructors.query.filter_by(username=username).first()
+        elif user_type == 'student':
+            person = Students.query.filter_by(username=username).first()
+
+        # See if it's a valid user or not!
+        if not person or not bcrypt.check_password_hash(person.password, password):
+            flash('Please check your login details and try again.', 'error')
+            return render_template('login.html')
+        else:
+            session['name'] = username
+            session['user_type'] = user_type
+            session.permanent = True
+            return redirect(url_for('home'))
+        
+
+@app.route("/create-account", methods=['GET', 'POST'])
 def create_acc():
-    pagename="Create Account"
-    return render_template("create_acc.html", pagename=pagename)
+    if request.method== 'GET':
+        pagename="Create Account"
+        return render_template("create_acc.html", pagename=pagename)
+    
+    elif request.form['user_type'] == 'student':
+        user_name = request.form['Username']
+        firstname = request.form['Firstname']
+        password = request.form['Password']
+        user_type = 'student'
+        if is_username_taken(user_name):
+            flash('Username already taken. Choose something else.')
+            return render_template("create_acc.html", pagename="Create Account")
+        else:
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            reg_details = (
+                user_name,
+                firstname,
+                hashed_password,
+                user_type
+            )
+            add_student(reg_details)
+            flash('Account created successfully. Please login now:')
+            return render_template("login.html")
 
-@app.route("/grades-instructor")
-def grades_instructor():
+    else:  # user_type must be instructor
+        user_name = request.form['Username']
+        firstname = request.form['Firstname']
+        password = request.form['Password']
+        user_type = 'instructor'
+        if is_username_taken(user_name):
+            flash('Username already taken. Choose something else.')
+            return redirect(url_for("create_acc"))
+        else:
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            reg_details = (
+                user_name,
+                firstname,
+                hashed_password,
+                user_type
+            )
+            add_instructor(reg_details)
+            flash('Account created successfully. Please login now:')
+            return redirect(url_for('login'))
+        
+
+@app.route("/grades_insview")
+def grades_insview():
     pagename="Instructor's View of Grades"
     return render_template("grades_insview.html", pagename=pagename)
 
-@app.route("/grades-student")
-def grades_student():
+@app.route("/grades_stuview")
+def grades_stuview():
     pagename="Student's View of Grades"
     return render_template("grades_stuview.html", pagename=pagename)
+
+@app.route("/news")
+def news():
+    pagename="News"
+    return render_template("news.html", pagename=pagename)
+
+@app.route("/piazza")
+def piazza():
+    pagename="Piazza"
+    return render_template("piazza.html", pagename=pagename)
+
+@app.route("/lectures")
+def lectures():
+    pagename="Lectures"
+    return render_template("lectures.html", pagename=pagename)
+
+@app.route("/labs")
+def labs():
+    pagename="Labs"
+    return render_template("labs.html", pagename=pagename)
+
+@app.route("/assignments")
+def assignments():
+    pagename="Assignments"
+    return render_template("assignments.html", pagename=pagename)
+
+@app.route("/tests")
+def tests():
+    pagename="Tests"
+    return render_template("tests.html", pagename=pagename)
+
+@app.route("/resources")
+def resources():
+    pagename="Resources"
+    return render_template("resources.html", pagename=pagename)
+
+@app.route("/feedback")
+def feedback():
+    pagename="Feedback"
+    return render_template("feedback_insview.html", pagename=pagename)
+
+@app.route("/feedback-form")
+def feedback_form():
+    pagename="Feedback form"
+    return render_template("feedback_stuview.html", pagename=pagename)
+
+def add_student(reg_details):
+    student = Students(username= reg_details[0], firstname=reg_details[1], password=reg_details[2], type=reg_details[3])
+    db.session.add(student)
+    db.session.commit()
+
+def add_instructor(reg_details):
+    instructor = Instructors(username= reg_details[0], firstname=reg_details[1], password=reg_details[2], type=reg_details[3])
+    db.session.add(instructor)
+    db.session.commit()
+
+def is_username_taken(username):
+    # Check if the username already exists in the database
+    student = Students.query.filter_by(username=username).first()
+    instructor = Instructors.query.filter_by(username=username).first()
+    if student or instructor:
+        return True
+    else:
+        return False
+
+@app.route('/logout')
+def logout():
+    session.pop('name', default = None)
+    return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.run(debug=True)

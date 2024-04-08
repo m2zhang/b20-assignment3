@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="/static/css/styles.css"/>
 </head>
 
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class = flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% endblock %}
+
 <body>
     <section class="create_acc_container">
         <header>Welcome to CSCB20</header>
@@ -21,13 +34,13 @@
             <label for="ins">Instructor</label><br>
             </div>
 
-            <label for="username">Username</label>
+            <label for="Username">Username</label>
             <input type="text" id="Username" name="Username" required><br>
-            
-            <label for="email">Email</label>
-            <input type="text" id="Email" name="Email" required><br>
 
-            <label for="password">Password</label>
+            <label for="Firstname">First name</label>
+            <input type="text" id="Firstname" name="Firstname" required><br>
+
+            <label for="Password">Password</label>
             <input type="text" id="Password" name="Password" required><br>
 
             <button type="create-acc">Create an Account</button>
