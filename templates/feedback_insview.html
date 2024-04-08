@@ -1,4 +1,17 @@
 {% extends "template.html" %}
 {% block content %}
 
-{% endblock%}
+{% if session.name and session.user_type =='instructor' %}
+    <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
+    <p> This is for instructor's view </p>
+
+{% else %}
+    <h1>This is the CSCB20 Course page</h1>
+    <p>
+    You are not authorized to view this page.
+    
+    </p>
+
+{% endif %}
+
+{% endblock %}

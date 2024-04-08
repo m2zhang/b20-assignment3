@@ -24,12 +24,30 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #D4DCF6;
+    margin-left: 25px;
+
+    /* Make this and below crossed out? Move to nav_bar section? */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    
 }
+
+/* 
+.navbar_section {
+    font-family: Arial, sans-serif;
+    background-color: #D4DCF6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 88px;
+}
+
+Thinking about how to layer the navbar in the template.. cause it's a bit confusing w different screen sizes
+*/
 
 .login-container {
     display: flex;

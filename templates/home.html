@@ -1,17 +1,51 @@
 {% extends "template.html" %}
 {% block content %}
 
-{% if session.name and session.user_type =='student' %}
-          <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
-          <p> This is for student's view </p>
+{% if session.name %}
+    <div class = "team-container">
+        <div class="team-card">
+            <div class="imgBx">
+                <img src="/static/anna.png">
+            </div>
+            <div class="contentBx">
+                <div class="content">
+                    <h3>Professor Anna</h3>
+                    <p>Super fire prof who Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Incidunt accusantium, voluptates distinctio magni ab officia debitis eveniet.</p>
+                </div>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="imgBx">
+                <img src="/static/purva.png">
+            </div>
+            <div class="contentBx">
+                <div class="content">
+                    <h3>Professor Purva</h3>
+                    <p>Super cool and nice prof who Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Incidunt accusantium, voluptates distinctio magni ab officia.</p>
+                </div>
+            </div>
+        </div>
+        <div class="team-card">
+            <div class="imgBx">
+                <img src="/static/navinn.png">
+            </div>
+            <div class="contentBx">
+                <div class="content">
+                    <h3>TA Navinn</h3>
+                    <p>Super cool and fire TA who Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                        Incidunt accusantium, voluptates distinctio magni ab officia.</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
 
 {% endif %}
 
-{% if session.name and session.user_type =='instructor' %}
-    <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
-    <p> This is for instructor's view </p>
-
-{% endif %}
 
 {% if not session.name %}
     <h1>This is the CSCB20 Course page</h1>
