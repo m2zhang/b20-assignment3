@@ -10,17 +10,19 @@
 </head>
 
 <body>
+    {% block additional_content %}
+
+{% if session.name %}
 
 <div class="navbar">
     <a href="#" class="active">Home</a>
-    {% block additional_content %}
+
         {% if session.user_type =='student' %}  
             <a href="{{url_for('grades_stuview')}}">Grades</a>
         {% elif session.user_type =='instructor' %}
             <a href="{{url_for('grades_insview')}}">Grades</a>
         
             {% endif %}
-    {% endblock %}
     <a href="{{url_for('news')}}">News</a>
     <a href="{{url_for('piazza')}}">Piazza</a>
     <a href="{{url_for('lectures')}}">Lectures</a>
@@ -29,6 +31,10 @@
     <a href="{{url_for('tests')}}">Tests</a>
     <a href="{{url_for('resources')}}">Resources</a>
     <a href="#">Feedback</a>
+
+    {% endif %}
+
+    {% endblock %}
 
 </div>
     {% block content %}
