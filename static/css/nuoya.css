@@ -168,3 +168,178 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
         width: 100%;
     }
 }
+
+.news-section {
+    display: block;
+    position: relative;
+    width: 90%;
+    margin-top: 30%
+}
+
+.news-item {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+}
+
+.container {
+    display:block;
+    position: relative;
+    justify-content: center;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+    padding:4%;
+    width:100%;
+    height: 700px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 20%;
+    justify-content: space-evenly;
+  }
+
+  #Lectures_title {
+    text-align: center;
+    
+  }
+
+.firstDiv{
+    background-color: #e3effa;
+    padding: 5px;
+    height: 600px;
+    width: 400px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+
+}
+
+.firstDiv > h1 {
+    text-align: center;
+}
+
+.firstDiv > p {
+    text-align: center;
+}
+
+#lecslide:hover{
+    color:rgb(46, 160, 209);
+    text-decoration: underline;
+}
+
+#tutworksheet:hover{
+    color:rgb(46, 160, 209);
+    text-decoration: underline;
+}
+.secondDiv{
+    background-color: #e3effa;
+    padding: 5px;
+    height: 600px;
+    width: 400px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+
+}
+
+.secondDiv > h1 {
+    text-align: center;
+}
+
+.secondDiv > p {
+    text-align: center;
+}
+
+#worksheet:hover{
+    color:rgb(46, 160, 209);
+    text-decoration: underline;
+}
+
+#tutworksheetsol:hover{
+    color:rgb(46, 160, 209);
+    text-decoration: underline;
+}
+
+.thirdDiv{
+    background-color: #e3effa;
+    padding: 5px;
+    height: 600px;
+    width: 400px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+
+}
+
+.thirdDiv > h1 {
+    text-align: center;
+}
+
+.thirdDiv > p {
+    text-align: center;
+}
+
+#worksheetsol:hover{
+    color:rgb(46, 160, 209);
+    text-decoration: underline;
+}
+
+.AfirstDiv{
+    padding: 5px;
+    height: 450px;
+    width: 400px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+
+}
+
+.AfirstDiv > h1 {
+    text-align: center;
+}
+
+.AfirstDiv > p {
+    text-align: center;
+
+}
+
+.AsecondDiv{
+    background-color: #e3effa;
+    padding: 5px;
+    height: 450px;
+    width: 400px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+
+}
+
+.AsecondDiv > h1 {
+    text-align: center;
+}
+
+.AsecondDiv > p {
+    text-align: center;
+}
+
+.AthirdDiv{
+    background-color: #a5bedb;
+    padding: 5px;
+    height: 450px;
+    width: 400px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+
+}
+
+.AthirdDiv > h1 {
+    text-align: center;
+}
+
+.AthirdDiv > p {
+    text-align: center;
+}
+
+

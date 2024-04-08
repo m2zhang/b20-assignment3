@@ -1,6 +1,34 @@
 {% extends "template.html" %}
 {% block content %}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tests</title>
+</head>
+<body>
+    <div class="container">
+        <h1 id="Tests_title">Tests</h1>
+            <div class="AfirstDiv">
+                <h1>Midterm Exam</h1>
+                
+                <p>Weighting: <b>25%</b></p>
+                <p>Date: February 26th</p>
+                <p>Time: 9:00am - 11:00am</p>
+                <p>Location: SW 319</p>
+                <p>Content: The midterm will cover everything from week 1 to week 5 (RA and SQL)</p>
+            </div>
+            <div class="AsecondDiv">
+                <h1>Final Exam </h1>
+                <p>Weighting: <b>40%</b></p>
+                <p>Date: April 23rd</p>
+                <p>Time: 9:00am - 12pm</p>
+                <p>Location: TBD</p>
+                <p>Content: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia unde explicabo</p>
+            </div> 
+</body>
+</html>
 {% if session.name %}
           <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
           <p> This is the tests page </p>
