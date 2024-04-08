@@ -342,4 +342,56 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
     text-align: center;
 }
 
+.ft-main {
+    max-width: 1200px;  
+    margin: 0 auto;  
+}
+
+.ft-main ul {
+    list-style-type: none;
+}
+
+footer{
+    display:flex;
+    position: sticky;
+    list-style-type: none;
+    background-color: #FDF4DD;
+    width: 120%;
+    margin:0;
+    float:left;
+    justify-content: center;
+}
+
+#foot-title{
+    text-align: center;
+    font-size: 20px;
+    color:black;
+    margin:15px;
+}
+
+
+#foot-cont{
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding:0%;
+}
+
+#foot-cont-a{
+    color: rgb(6, 75, 124);
+    text-decoration: underline;
+}
+
+.ft-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 10vh; /* Minimum height of the viewport */
+}
+
+main {
+    flex: 1;
+}
+
+
+
 
