@@ -376,8 +376,9 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
 }
 
 footer{
-    display:flex;
-    position: sticky;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     list-style-type: none;
     background-color: #FDF4DD;
     width: 120%;
