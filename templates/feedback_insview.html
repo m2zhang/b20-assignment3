@@ -2,8 +2,32 @@
 {% block content %}
 
 {% if session.name and session.user_type =='instructor' %}
-    <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
-    <p> This is for instructor's view </p>
+    <h3> Welcome {{ session.name }} to your feedback from anonymous students! </h3>
+    <br>
+    {% if feedback %}
+<table>
+  <tr>
+    <th>Feedback ID</th>
+    <th>Like</th>
+    <th>Improve Teaching</th>
+    <th>Labs</th>
+    <th>Improve Lab</th>
+  </tr>
+  {% for item in feedback %}
+  <tr>
+    <td>{{ item.id }}</td>
+    <td>{{ item.like }}</td>
+    <td>{{ item.improve_teach }}</td>
+    <td>{{ item.labs }}</td>
+    <td>{{ item.improve_lab }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No feedback available for this instructor.</p>
+{% endif %}
+
+
 
 {% else %}
     <h1>This is the CSCB20 Course page</h1>

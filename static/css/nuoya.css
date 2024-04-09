@@ -219,7 +219,7 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
     height: 700px;
     padding: 10px;
     margin: 0 auto;
-    margin-top: 20%;
+    margin-top: 80vh;
     justify-content: space-evenly;
   }
 
@@ -425,7 +425,7 @@ main {
     width: 90%;
     max-width: 600px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 100vh;
+    margin-top: 60vh;
 }
 
 .feedback-form h1 {
