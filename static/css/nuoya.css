@@ -436,14 +436,14 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
 }
 
 /* Styling the close button */
-.form-popup .btn.cancel {
+.form-popup .btn.cancel, #closeRemarkFormButton {
     background-color: #d85b50; 
     border-radius: 5px;  
 }
 
 /* Styling the close button on hover */
-.form-popup .btn.cancel:hover {
-    background-color: #b63333;  
+.form-popup .btn.cancel:hover, #closeRemarkFormButton:hover {
+    background-color: #a72929;  
 }
 
 /* Styling the close button position */
@@ -452,7 +452,7 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
 }
 
 
-#filterButton {
+#filterButton, #openRemarkFormButton  {
     background-color: #007bff; 
     color: white;  
     padding: 10px 20px;  
@@ -462,6 +462,6 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
     margin-bottom: 10px;
 }
 
-#filterButton:hover {
+#filterButton:hover, #openRemarkFormButton:hover {
     background-color: #0056b3;  
 }

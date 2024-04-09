@@ -17,3 +17,13 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function() {
+    $("#openRemarkFormButton").click(function() {
+        $("#remarkForm").show();
+    });
+
+    $("#closeRemarkFormButton").click(function() {
+        $("#remarkForm").hide();
+    });
+});

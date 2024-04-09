@@ -65,6 +65,7 @@ class Feedback(db.Model):
     def __repr__(self):
         return f"Feedback('{self.id}', '{self.like}')"
 
+# ACTUALLY. Just ignore this database, we're going to just store the remark requests in the Grades database directly.
 # store remark requests
 class Remarks(db.Model):
     __table__name = 'RemarkRequests'
@@ -113,6 +114,15 @@ def login():
         else:
             session['name'] = username
             session['user_type'] = user_type
+            if user_type == 'student':
+        # Convert Grades objects to dictionaries
+                grades_data = [{
+                    'assignment_name': grade.assignment_name,
+                    'grade': grade.grade,
+                    'remark_request': grade.remark_request,
+                    'id': grade.id
+                } for grade in person.grades]
+                session['grades'] = grades_data  
             session.permanent = True
             return redirect(url_for('home'))
         
@@ -191,11 +201,34 @@ def query_students():
     query_students = Students.query.all()
     return query_students
      
+def remark_req(remark_details):
+    grade_id = remark_details[0]
+    print(grade_id)
+    new_remark = remark_details[1]
+    print(new_remark)
 
-@app.route("/grades_stuview")
+    grade = db.session.get(Grades, grade_id)
+    print(grade)
+    grade.remark_request = new_remark
+    if grade:
+        grade.remark_request = new_remark
+        db.session.commit()
+
+
+@app.route("/grades_stuview", methods = ['GET', 'POST'])
 def grades_stuview():
     pagename="Student's View of Grades"
-    return render_template("grades_stuview.html", pagename=pagename)
+    query_students_result = query_students()
+    if request.method == 'GET':
+        return render_template("grades_stuview.html", pagename=pagename, query_students_result=query_students_result)
+    else:
+        remark_details = (
+            request.form['assignment'],
+            request.form['reason']
+        )
+        remark_req(remark_details)
+        flash('Remark request successfully sent. Please check this site in a few days for a potential change in your grade(s).')
+        return redirect(url_for('grades_stuview'))
 
 @app.route("/news")
 def news():
