@@ -2,30 +2,29 @@
 {% block content %}
 
 {% if session.name and session.user_type =='instructor' %}
-    <h3> Welcome {{ session.name }} to your feedback from anonymous students! </h3>
+    <h3 class="feedback-heading"> Welcome {{ session.name }} to your feedback from anonymous students! </h3>
     <br>
     {% if feedback %}
-<table>
-  <tr>
-    <th>Feedback ID</th>
-    <th>Like</th>
-    <th>Improve Teaching</th>
-    <th>Labs</th>
-    <th>Improve Lab</th>
-  </tr>
-  {% for item in feedback %}
-  <tr>
-    <td>{{ item.id }}</td>
-    <td>{{ item.like }}</td>
-    <td>{{ item.improve_teach }}</td>
-    <td>{{ item.labs }}</td>
-    <td>{{ item.improve_lab }}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% else %}
-<p>No feedback available for this instructor.</p>
-{% endif %}
+        <table class="feedback-table">
+            <tr>
+                <th class="feedback-header">Like</th>
+                <th class="feedback-header">Improve Teaching</th>
+                <th class="feedback-header">Labs</th>
+                <th class="feedback-header">Improve Lab</th>
+            </tr>
+            {% for item in feedback %}
+                <tr>
+                    <td>{{ item.like }}</td>
+                    <td>{{ item.improve_teach }}</td>
+                    <td>{{ item.labs }}</td>
+                    <td>{{ item.improve_lab }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p class="no-feedback">No feedback available for this instructor.</p>
+    {% endif %}
+
 
 
 
