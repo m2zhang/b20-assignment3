@@ -16,6 +16,7 @@
     <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
     <p> Here you can see students' grades, enter new marks, and also update marks as per students' remark requests. </p>
     <br>
+    
     <button id="openGradeFormButton">Submit Grade</button>
     <div id="gradeForm" class="form-popup" style="display: none;">
         <form action="http://127.0.0.1:5000/grades_insview" method="post">
@@ -36,8 +37,35 @@
     </div>
     <script type='text/javascript' src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
     <script src="{{ url_for('static', filename='js/grades.js') }}"></script>
-    
-    
+
+    <br>
+    <p>View all students' grades:</p>
+    <button id="filterButton">Filter by Remark Requests</button>
+    <table class="student_grades">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Username</th>
+                <th>Assignment Name</th>
+                <th>Grade</th>
+                <th>Remark Request</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in query_students_result %}
+                {% for grade in student.grades %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.username }}</td>
+                        <td>{{ grade.assignment_name }}</td>
+                        <td>{{ grade.grade }}</td>
+                        <td>{{ grade.remark_request }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
 
 {% else %}
     <h1>This is the CSCB20 Course page</h1>

@@ -6,3 +6,14 @@ $(document).ready(function() {
         $("#gradeForm").hide();
     });
 });
+
+$(document).ready(function() {
+    $("#filterButton").click(function() {
+        $(".student_grades tbody tr").each(function() {
+            var remarkRequest = $(this).find("td:nth-child(5)").text().trim();
+            if (remarkRequest === '') {
+                $(this).toggle(); // Toggle visibility
+            }
+        });
+    });
+});

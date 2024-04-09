@@ -1,3 +1,27 @@
+.student_grades {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.student_grades th, .student_grades td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.student_grades th {
+    background-color: #f2f2f2;
+}
+
+.student_grades tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.student_grades tr:hover {
+    background-color: #ddd;
+}
+
+
 .flashes {
     list-style: none;
     padding: 0;
@@ -343,3 +367,101 @@ Thinking about how to layer the navbar in the template.. cause it's a bit confus
 }
 
 
+/* Styling submit grade button */
+#openGradeFormButton {
+    background-color: #4CAF50;
+    color: white;  
+    padding: 10px 20px;  
+    border: none;  
+    cursor: pointer; 
+    border-radius: 5px;  
+}
+
+/* Hover effect */
+#openGradeFormButton:hover {
+    background-color: #45a049; 
+}
+
+
+/* Styling the form */
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff; 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+}
+
+/* Styling the form header */
+.form-popup h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Styling the form labels */
+.form-popup label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Styling the form inputs */
+.form-popup input[type="text"],
+.form-popup input[type="number"],
+.form-popup select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Styling the submit button */
+.form-popup input[type="submit"] {
+    background-color: #4CAF50; 
+    color: white;  
+    padding: 10px 20px;  
+    border: none; 
+    cursor: pointer;  
+    border-radius: 5px;  
+}
+
+.form-popup input[type="submit"]:hover {
+    background-color: #307f33;
+}
+
+/* Styling the close button */
+.form-popup .btn.cancel {
+    background-color: #d85b50; 
+    border-radius: 5px;  
+}
+
+/* Styling the close button on hover */
+.form-popup .btn.cancel:hover {
+    background-color: #b63333;  
+}
+
+/* Styling the close button position */
+.form-popup .btn.cancel {
+    float: right;
+}
+
+
+#filterButton {
+    background-color: #007bff; 
+    color: white;  
+    padding: 10px 20px;  
+    border: none;  
+    border-radius: 5px;  
+    cursor: pointer;  
+    margin-bottom: 10px;
+}
+
+#filterButton:hover {
+    background-color: #0056b3;  
+}

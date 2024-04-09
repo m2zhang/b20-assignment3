@@ -190,7 +190,7 @@ def add_grades(grade_details):
 def query_students():
     query_students = Students.query.all()
     return query_students
-
+     
 
 @app.route("/grades_stuview")
 def grades_stuview():
