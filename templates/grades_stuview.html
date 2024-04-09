@@ -1,9 +1,65 @@
 {% extends "template.html" %}
 {% block content %}
 
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class = flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
 {% if session.name and session.user_type =='student' %}
           <h3> Welcome {{ session.name }} to CSCB20 Lecture notes! </h3>
-          <p> This is for student's view </p>
+          <p> Here you can view your grades:</p>
+            <br>
+            <table class="student_grades">
+                <thead>
+                    <tr>
+                        <th>Assignment Name</th>
+                        <th>Grade</th>
+                        <th>Remark Request</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grade in session.grades %}
+                        <tr>
+                            <td>{{ grade.assignment_name }}</td>
+                            <td>{{ grade.grade }}</td>
+                            <td>{{ grade.remark_request }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <br>
+
+          <p>If you wish to submit a remark request, please click the button below and submit the pop-up form.
+            Your remark request in your Grades' table will update the next time you login. 
+            </p>
+        <br>
+        <button id="openRemarkFormButton">Request Remark</button>
+        <div id="remarkForm" class="form-popup" style="display: none;">
+            <form action="http://127.0.0.1:5000/grades_stuview" method="post">
+                <h2>Remark Request</h2>
+                <label for="assignment">Select Assignment:</label>
+                <select id="assignment" name="assignment">
+                    {% for grade in session.grades %}
+                        <option value="{{ grade.id }}">{{ grade.assignment_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="reason">Reason for Remark:</label>
+                <textarea id="reason" name="reason" required></textarea>
+                <input type="submit" value="Submit">
+                <button type="button" id="closeRemarkFormButton" onclick="closeRemarkForm()">Close</button>
+            </form>
+        </div>
+        <script type='text/javascript' src="{{url_for('static', filename='js/jquery-3.7.1.min.js')}}"></script>
+        <script src="{{ url_for('static', filename='js/grades.js') }}"></script>
+        <br>
 
 
 {% else %}

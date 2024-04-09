@@ -16,32 +16,32 @@
 
 <!-- <section class = "navbar_section"> not sure if we need yet.. -->
 
-<div class="navbar">
-    <a href="#" class="active">Home</a>
-
+    <div class="navbar">
+        <a href="{{url_for('home')}}" class="{% if request.path == url_for('home') %}active{% endif %}">Home</a>
+    
         {% if session.user_type =='student' %}  
-            <a href="{{url_for('grades_stuview')}}">Grades</a>
+            <a href="{{url_for('grades_stuview')}}" class="{% if request.path == url_for('grades_stuview') %}active{% endif %}">Grades</a>
         {% elif session.user_type =='instructor' %}
-            <a href="{{url_for('grades_insview')}}">Grades</a>
-        
+            <a href="{{url_for('grades_insview')}}" class="{% if request.path == url_for('grades_insview') %}active{% endif %}">Grades</a>
         {% endif %}
-    <a href="{{url_for('news')}}">News</a>
-    <a href="https://piazza.com/utoronto.ca/winter2024/cscb20h3s">Piazza</a>
-    <a href="{{url_for('lectures')}}">Lectures</a>
-    <a href="{{url_for('labs')}}">Labs</a>
-    <a href="{{url_for('assignments')}}">Assignments</a>
-    <a href="{{url_for('tests')}}">Tests</a>
-    <a href="{{url_for('resources')}}">Resources</a>
-
-    {% if session.user_type =='student' %}  
-        <a href="{{url_for('feedback_form')}}">Feedback</a>
-    {% elif session.user_type =='instructor' %}
-        <a href="{{url_for('feedback')}}">Feedback</a>
+    
+        <a href="{{url_for('news')}}" class="{% if request.path == url_for('news') %}active{% endif %}">News</a>
+        <a href="https://piazza.com/utoronto.ca/winter2024/cscb20h3s" class="{% if request.path == 'https://piazza.com/utoronto.ca/winter2024/cscb20h3s' %}active{% endif %}">Piazza</a>
+        <a href="{{url_for('lectures')}}" class="{% if request.path == url_for('lectures') %}active{% endif %}">Lectures</a>
+        <a href="{{url_for('labs')}}" class="{% if request.path == url_for('labs') %}active{% endif %}">Labs</a>
+        <a href="{{url_for('assignments')}}" class="{% if request.path == url_for('assignments') %}active{% endif %}">Assignments</a>
+        <a href="{{url_for('tests')}}" class="{% if request.path == url_for('tests') %}active{% endif %}">Tests</a>
+        <a href="{{url_for('resources')}}" class="{% if request.path == url_for('resources') %}active{% endif %}">Resources</a>
+    
+        {% if session.user_type =='student' %}  
+            <a href="{{url_for('feedback_form')}}" class="{% if request.path == url_for('feedback_form') %}active{% endif %}">Feedback</a>
+        {% elif session.user_type =='instructor' %}
+            <a href="{{url_for('feedback')}}" class="{% if request.path == url_for('feedback') %}active{% endif %}">Feedback</a>
+        {% endif %}
+    
+        <a href="{{ url_for('logout') }}" class="{% if request.path == url_for('logout') %}active{% endif %}">Log Out</a>
+    </div>
     {% endif %}
-
-    <a href="{{ url_for('logout') }}">Log Out</a>
-    {% endif %}
-
     {% endblock %}
 
 </div>
