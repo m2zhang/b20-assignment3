@@ -203,12 +203,9 @@ def query_students():
      
 def remark_req(remark_details):
     grade_id = remark_details[0]
-    print(grade_id)
     new_remark = remark_details[1]
-    print(new_remark)
 
     grade = db.session.get(Grades, grade_id)
-    print(grade)
     grade.remark_request = new_remark
     if grade:
         grade.remark_request = new_remark
@@ -265,15 +262,34 @@ def resources():
     pagename="Resources"
     return render_template("resources.html", pagename=pagename)
 
-@app.route("/feedback")
+@app.route("/feedback") #instructor view
 def feedback():
     pagename="Feedback"
     return render_template("feedback_insview.html", pagename=pagename)
 
-@app.route("/feedback-form")
-def feedback_form():
+@app.route("/feedback-form", methods = ['GET', 'POST']) #student view
+def feedback_stuview():
     pagename="Feedback form"
-    return render_template("feedback_stuview.html", pagename=pagename)
+    if request.method == 'GET':
+        instructors= Instructors.query.all()
+        return render_template("feedback_stuview.html", pagename=pagename, instructors=instructors)
+    else:
+        feedform = (
+            request.form['like'],
+            request.form['improve_teach'],
+            request.form['labs'],
+            request.form['improve_lab'],
+            request.form['instructor']
+        )
+
+        addform(feedform)
+        flash('Form submitted successfully.')
+        return redirect(url_for('feedback_stuview'))
+
+def addform(feedform):
+    feedback = Feedback(like = feedform[0], improve_teach=feedform[1], labs=feedform[2], improve_lab=feedform[3], instructors_id = feedform[4])
+    db.session.add(feedback)
+    db.session.commit()
 
 def add_student(reg_details):
     student = Students(username= reg_details[0], firstname=reg_details[1], password=reg_details[2], type=reg_details[3])

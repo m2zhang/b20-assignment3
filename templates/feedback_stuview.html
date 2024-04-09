@@ -1,30 +1,44 @@
 {% extends "template.html" %}
 {% block content %}
 
-{% if session.name and session.user_type =='student' %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class = flashes style="margin-top: 50vh;">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% if session.name and session.user_type == 'student' %}
 <div class="feedback-form">
+    <form action="{{ url_for('feedback_stuview') }}" method="post">
     <h1>Anonymous Feedback Form</h1>
 
     <label for="instructor-like">What do you like about the instructor teaching?</label>
-    <textarea id="instructor-like" rows="4" required></textarea>
+    <textarea id="instructor-like" name="like" rows="4" required></textarea>
 
     <label for="instructor-improve">What do you recommend the instructor to do to improve their teaching?</label>
-    <textarea id="instructor-improve" rows="4" required></textarea>
+    <textarea id="instructor-improve" name="improve_teach" rows="4" required></textarea>
 
     <label for="labs-like">What do you like about the labs?</label>
-    <textarea id="labs-like" rows="4" required></textarea>
+    <textarea id="labs-like" rows="4" name="labs" required></textarea>
 
     <label for="labs-improve">What do you recommend the lab instructors to do to improve their lab teaching?</label>
-    <textarea id="labs-improve" rows="4" required></textarea>
+    <textarea id="labs-improve" name="improve_lab" rows="4" required></textarea>
 
     <label for="instructor-select"></label>
-    <select id="instructor-select" required>
+    <select id="instructor-select" name='instructor' required>
         <option value="" disabled selected>Select an instructor</option>
-        <option value="Instructor A">Instructor 1</option>
-        <option value="Instructor B">Instructor 2</option>
+        {% for instructor in instructors %}
+            <option value="{{ instructor.id }}">{{ instructor.username }}</option>
+            {% endfor %}
     </select>
 
     <button type="submit">Submit</button>
+</form>
 </div>
 
 

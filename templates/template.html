@@ -34,7 +34,7 @@
         <a href="{{url_for('resources')}}" class="{% if request.path == url_for('resources') %}active{% endif %}">Resources</a>
     
         {% if session.user_type =='student' %}  
-            <a href="{{url_for('feedback_form')}}" class="{% if request.path == url_for('feedback_form') %}active{% endif %}">Feedback</a>
+            <a href="{{url_for('feedback_stuview')}}" class="{% if request.path == url_for('feedback_stuview') %}active{% endif %}">Feedback</a>
         {% elif session.user_type =='instructor' %}
             <a href="{{url_for('feedback')}}" class="{% if request.path == url_for('feedback') %}active{% endif %}">Feedback</a>
         {% endif %}
