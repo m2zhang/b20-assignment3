@@ -268,8 +268,10 @@ def resources():
 
 @app.route("/feedback") #instructor view
 def feedback():
+    instructor_id = session.get('instructor_id')
+    feedback = Feedback.query.filter_by(instructors_id=instructor_id).all()
     pagename="Feedback"
-    return render_template("feedback_insview.html", pagename=pagename)
+    return render_template("feedback_insview.html", pagename=pagename, feedback=feedback)
 
 @app.route("/feedback-form", methods = ['GET', 'POST']) #student view
 def feedback_stuview():
