@@ -123,7 +123,11 @@ def login():
                     'id': grade.id
                 } for grade in person.grades]
                 session['grades'] = grades_data  
+            if user_type == 'instructor':
+                instructor = Instructors.query.filter_by(username=username).first()
+                session['instructor_id'] = instructor.id
             session.permanent = True
+    
             return redirect(url_for('home'))
         
 
